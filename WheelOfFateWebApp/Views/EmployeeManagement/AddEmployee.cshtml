@@ -1,0 +1,44 @@
+﻿@model WheelOfFate.Models.DTO.EmployeeCreateDTO
+
+@{
+    ViewData["Title"] = "AddEmployee";
+}
+
+<h1>AddEmployee</h1>
+
+<h4>EmployeeCreateDTO</h4>
+<hr />
+<div class="p-4 border rounded">
+
+    <form asp-action="AddEmployee">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="EmpId" class="control-label"></label>
+                    <input asp-for="EmpId" class="form-control" />
+                    <span asp-validation-for="EmpId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group mt-3 text-end">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -1,0 +1,58 @@
+﻿@model WheelOfFate.Model.VM.EmplyeeHoursVM
+
+
+
+<h2>Shift Allotment</h2>
+<hr />
+<div class="p-4 border rounded">
+    <form asp-action="AssignHours">
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <input type="hidden" asp-for="merged.EmpId" />
+
+            <input type="hidden" asp-for="merged.WorkingHourID" />
+            @*<h4 id="TotalWorkedHours">Total Worked hours for this employee is - @Model.WorkingHours</h4>*@
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="employeeHours.WorkingShift" class="control-label"></label>
+                    <select asp-for="employeeHours.WorkingShift" class="form-control" asp-items="@Model.List">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="employeeHours.WorkingShift" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="merged.Name" class="control-label"></label>
+                    <input asp-for="merged.Name" class="form-control" />
+                    <span asp-validation-for="merged.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="employeeHours.WorkedDate" class="control-label"></label>
+                    <input asp-for="employeeHours.WorkedDate" class="form-control" value="@DateTime.Today" />
+                    <span asp-validation-for="employeeHours.WorkedDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group mt-4 text-end">
+
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

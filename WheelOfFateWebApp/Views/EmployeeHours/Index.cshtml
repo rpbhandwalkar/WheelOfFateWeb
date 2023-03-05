@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WheelOfFate.Models.DTO.MergedDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Past two weeks assigned data</h3>
+
+<div class="row p-4 border-top">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+             
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.ShiftType)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShiftType)
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-controller="EmployeeHours" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Assigned Hours" asp-action="DeleteAssignedHours" asp-route-EmpId=@item.WorkingHourID><i class="bi bi-trash3"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

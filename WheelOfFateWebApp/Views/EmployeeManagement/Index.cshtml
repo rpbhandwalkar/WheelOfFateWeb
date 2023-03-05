@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WheelOfFate.Models.DTO.EmployeeDTO>
+
+
+<div class="container p-2 m-2">
+
+    <div class="row px-4">
+        <div class="col-6">
+            <h2 class="text-light">Get All Employee</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-outline-info mb-3" asp-controller="EmployeeManagement" asp-action="AddEmployee"><i class="bi bi-plus-circle"></i>  Add Employee</a>
+        </div>
+    </div>
+    <div class="row p-4 border-top">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr class="table-dark">
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmpId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            <a class="btn btn-warning" asp-controller="EmployeeManagement" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Employee" asp-action="EditEmployee" asp-route-EmpId=@item.EmpId><i class="bi bi-pencil"></i>  </a>
+
+                            <a class="btn btn-danger" asp-controller="EmployeeManagement" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Employee" asp-action="DeleteEmployee" asp-route-EmpId=@item.EmpId><i class="bi bi-trash3"></i></a>
+
+                            <a class="btn btn-success" asp-controller="EmployeeManagement" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign Hours" asp-action="AssignHours" asp-route-EmpId=@item.EmpId><i class="bi bi-clipboard-plus"></i></a>
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    </script>
+
+  }
